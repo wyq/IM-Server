@@ -1,0 +1,7 @@
+---
+# defaults file for cluster.consul
+data_center: "iaas"
+domain: "gzsunrun"
+services: []
+dns_recursors: []
+clean_services: no

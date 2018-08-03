@@ -1,0 +1,9 @@
+# {{ ansible_managed }}
+
+restrict default nomodify
+restrict 127.0.0.1
+restrict 0.0.0.0 mask 0.0.0.0 nomodify
+restrict -6 ::1
+
+server 127.127.1.1
+fudge 127.127.1.1 stratum 2

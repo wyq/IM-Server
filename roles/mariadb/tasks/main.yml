@@ -1,0 +1,11 @@
+---
+# tasks file for ansible-mariadb-galera
+
+- import_tasks: setup_cluster.yml
+  when: >
+    install_db is defined and install_db|bool
+
+- name: Configure db
+  import_tasks: config_db.yml
+  when: >
+    mysql_master is defined and (mysql_master|bool) 

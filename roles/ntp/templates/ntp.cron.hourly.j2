@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+{% if master_ntp_server is defined %}
+ntpdate {{ master_ntp_server }}
+{% endif %}

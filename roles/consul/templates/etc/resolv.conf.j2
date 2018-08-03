@@ -1,0 +1,5 @@
+options rotate timeout:1
+nameserver 127.0.0.1
+{% for item in consul_peers %}
+nameserver {{hostvars[item].ansible_ssh_host}}
+{% endfor %}

@@ -1,0 +1,64 @@
+#!/usr/bin/python
+
+import commands
+import re
+from os import popen
+
+def mysql_cluster_status(module, cluster_size):
+
+    cmdline = "mysql -u root -e \"SHOW GLOBAL STATUS WHERE Variable_name IN ('wsrep_ready', 'wsrep_cluster_size', 'wsrep_cluster_status', 'wsrep_connected');\""
+
+    try:
+        _, output_lines = commands.getstatusoutput(cmdline)
+
+        wsrep_ready = False
+        wsrep_cluster_size = False
+        wsrep_connected = False
+        cluster_status_lines = output_lines.splitlines()
+        for line in cluster_status_lines:
+            if 'wsrep_ready' in line and 'ON' in line:
+                wsrep_ready = True
+                continue
+
+            if 'wsrep_cluster_size' in line and cluster_size in line:
+                wsrep_cluster_size = True
+                continue
+
+            if 'wsrep_connected' in line and 'ON' in line:
+                wsrep_connected = True
+                continue
+
+        if wsrep_ready and wsrep_cluster_size and wsrep_connected:
+            return 0, None
+        else:
+            return 1, 'MariaDB Galera cluster is not ready'
+    except Exception as e:
+        return 1, str(e)
+
+
+def main():
+    module = AnsibleModule(
+        argument_spec=dict(
+            cluster_size=dict(required=True),
+        ),
+        supports_check_mode=True
+    )
+
+    # In check mode, we take no action
+    # Since this module never changes system state, we just
+    # return changed=False
+    if module.check_mode:
+        module.exit_json(changed=False)
+
+    cluster_size = module.params['cluster_size']
+    (rc, msg) = mysql_cluster_status(module, cluster_size)
+    if rc == 0:
+        msg = msg or ""
+        module.exit_json(changed=False, stdout=msg, stderr="", rc=rc)
+    else:
+        module.fail_json(msg=msg, stdout='', stderr=msg, rc=rc)
+
+
+from ansible.module_utils.basic import *
+
+main()

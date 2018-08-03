@@ -1,0 +1,9 @@
+### 常用修改项 ###
+
+# rpm源配置
+yumrepo_repos:
+    os: 'http://10.21.1.140:8000/'
+    #sunrunim: 'http://10.21.21.169:8000/'
+
+# 主机名配置
+config_hostname: yes

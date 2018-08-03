@@ -1,0 +1,12 @@
+{
+    "name": "{{ grafana.datasource.name }}",
+    "type": "influxdb",
+    "typeLogoUrl": "",
+    "access": "proxy",
+    "url": "{{ datasource_url }}",
+    "password": "{{ grafana.datasource.password }}",
+    "user": "{{ grafana.datasource.username }}",
+    "database": "{{ grafana.datasource.database }}",
+    "basicAuth": false,
+    "isDefault": true
+}

@@ -1,0 +1,75 @@
+- name: Install LSB
+  yum: name=redhat-lsb-core
+
+- name: Count number of database server
+  set_fact:
+    db_cluster_size: "{{ db_servers | length }}"
+
+- name: Check conditions for MariaDB Galera Cluster
+  set_fact:
+    cluster_is_ok: yes
+  when: db_servers | length | int > 1
+
+- name: Check if MySQL is running
+  find: paths="/var/lib/mysql" patterns="*.pid"
+  register: mysql_pid_file
+
+- name: Stop MySQL service
+  shell: /etc/init.d/mysql stop
+  when: mysql_pid_file.matched > 0
+
+- name: Make sure no mysqld instance is running
+  mysql_kill:
+
+- name: Clean existed MariaDB galera cluster
+  import_tasks: uninstall_mariadb.yml
+
+- name: Install MariaDB 10.1 server
+  yum: name=MariaDB-server state=present
+
+- name: Disable mariadb and mysqld service
+  service: name={{item}} enabled=no
+  with_items:
+    - mysql
+    - mariadb
+
+- name: Install MariaDB client software
+  yum: name={{item}}
+  with_items:
+    - MariaDB-client
+    - galera
+    - MySQL-python
+
+- name: Add .my.cnf
+  template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0600
+
+- name: MySQL secure installation
+  import_tasks: mysql_secure_installation.yml
+  when: >
+    (mysql_master is defined and mysql_master) 
+
+- name: Generate galera config file
+  template: src={{ item }}.j2 dest=/etc/my.cnf.d/{{ item }}
+  with_items:
+    - galera.cnf
+  when: cluster_is_ok
+
+- name: Generate mysqld config file
+  template: src={{ item }}.j2 dest=/etc/my.cnf.d/{{ item }}
+  with_items:
+    - mariadb.cnf
+
+- name: Bootstrap mysql galera cluster
+  shell: /etc/init.d/mysql bootstrap
+  when: cluster_is_ok and mysql_master is defined and (mysql_master|bool)
+
+- name: Start mysqld
+  shell: /etc/init.d/mysql start
+  when: not cluster_is_ok or mysql_master is undefined or (mysql_master is defined and not (mysql_master|bool))
+
+- name: Enable mysqld
+  shell: chkconfig mysql on
+
+- name: Check cluster if ready
+  mysql_cluster_status: cluster_size={{ db_cluster_size }}
+  when: cluster_is_ok

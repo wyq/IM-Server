@@ -1,0 +1,6 @@
+---
+# defaults file for ansible-role-hosts-deploy
+
+GROUP_NAME: all
+
+extra_hosts: []

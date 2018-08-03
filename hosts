@@ -1,0 +1,41 @@
+[servers]
+host1 ansible_ssh_host=10.21.21.151 ansible_user=root ansible_ssh_pass=sunrunvas
+#host2 ansible_ssh_host=10.21.21.213 ansible_user=root ansible_ssh_pass=sunrunvas
+
+[ntp]
+# ntp_master=yes (yes|no) 是否做为时间同步服务器，有且只有一个
+host1 ntp_master=yes
+# 数据库服务集群，建议3个
+
+[mariadb]
+# mysql_master=yes (yes|no) 是否做为数据库集群引导节点,有且只有一个
+host1  mysql_master=yes
+
+[openfires] #聊天核心服务
+host1
+
+[turnservers] #音视频聊天,打洞服务
+host1
+
+[tomcats] #自定义接口skapi服务 (注：升级skapi应该保留此项)
+host1
+
+[sunruneps] #导出系统，可选择安装
+#host1
+
+[postgres] #导出系统对应该云数据库 greenplum
+#host1
+
+[mariadb:vars]
+# install_db=yes (yes|no) 是否重新安装mariadb集群,注意:yes会删除原有数据库 
+install_db=yes
+# generate_db=yes 是否生成数据库
+generate_db=yes
+#generate_user=yes 是否生成数据库用户
+generate_user=yes
+
+
+[openfires:vars]
+# install_openfire=yes (yes|no) 是否重新安装openfire,注意:yes 用于mysql重新安装后，openfire 的初始化，如http://x.x.x.x:9090/
+install_openfire=yes
+

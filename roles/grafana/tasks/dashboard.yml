@@ -1,0 +1,12 @@
+---
+
+- name: Make sure grafana dashboard temporary directory exist
+  file: path=/tmp/grafana/dashboards state=directory
+
+- name: Generate dashboard templates
+  template: src=templates/dashboards/{{ item.name }}.json.j2 dest=/tmp/grafana/dashboards/{{ item.name }}.json
+  with_items: "{{ grafana.dashboards }}"
+
+- name: Create dashboards 
+  shell: 'curl -H "Content-Type: application/json" --data @/tmp/grafana/dashboards/{{ item.name }}.json http://127.0.0.1:{{ grafana.port }}/api/dashboards/db'
+  with_items: "{{ grafana.dashboards }}"

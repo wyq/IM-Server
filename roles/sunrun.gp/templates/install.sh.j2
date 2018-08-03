@@ -1,0 +1,29 @@
+
+#1,init enviment
+bash commonInstall.sh
+
+#2.set system
+bash set.sh
+
+#3 init
+su - gpadmin -c "
+source /usr/local/greenplum-db/greenplum_path.sh
+
+/usr/local/greenplum-db-4.3.8.2/bin/gpinitsystem -c gpinitsystem_config -h /home/gpadmin/seg_hosts_file
+
+/usr/bin/cp /home/gpadmin/pg_hba.conf  /tol/master/gpseg-1/pg_hba.conf
+/usr/local/greenplum-db-4.3.8.2/bin/psql  -d pgdb -f /home/gpadmin/initDb.sql
+/usr/local/greenplum-db-4.3.8.2/bin/psql  -d {{ greenplum.postgres_db_dbname }}</home/gpadmin/sunrunep.sql
+/usr/local/greenplum-db-4.3.8.2/bin/psql  -d {{ greenplum.postgres_db_dbname }}</home/gpadmin/sunrunep.data.sql
+/usr/local/greenplum-db-4.3.8.2/bin/gpstop -a
+"
+/usr/bin/systemctl daemon-reload 
+/usr/bin/systemctl enable sunrungp.service 
+/usr/bin/systemctl start sunrungp.service 
+
+
+
+
+
+
+

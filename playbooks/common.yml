@@ -1,0 +1,112 @@
+- name: Common config
+  hosts: all
+  gather_facts: no
+  vars:
+    trust_hosts: []
+    public_rules: []
+
+  pre_tasks:
+
+    - name: Include variable file
+      include_vars: "{{item}}"
+      with_items:
+        - "../vars/yumrepo.yml"
+        - "../vars/mariadb.yml"
+        - "../vars/sunrun_gp.yml"
+        - "../vars/sunrun_im.yml"
+
+    - name: Disable selinux
+      selinux:
+        state: disabled
+    
+    - name: Verify NetworkManager service is shutdown and disabled
+      service:
+        name: NetworkManager
+        state: stopped
+        enabled: no
+
+    - name: Config hostname
+      hostname:
+        name: "{{ inventory_hostname }}"
+      when: config_hostname is defined and config_hostname|bool
+
+    - name: Set public network ip to trusted hosts
+      set_fact:
+        trust_hosts: "{{ trust_hosts }} + ['{{ hostvars[item].ansible_ssh_host }}']"
+      with_items: "{{ groups['all'] }}"
+
+
+    - name: Set extra public rule for ntpd
+      set_fact:
+        public_rules: "{{ public_rules }} + ['123/udp']"
+      when: >
+        ntp_master is defined and ntp_master|bool
+
+    - name: Set extra public rule for dns
+      set_fact:
+        public_rules: "{{ public_rules }} + ['53/udp'] + ['53/tcp']"
+      when: >
+        "consul" in group_names
+
+    - name: Set extra public rule for consul ui
+      set_fact:
+        public_rules: "{{ public_rules }} + ['8500/tcp'c_rules]"
+      when: >
+        "consul" in group_names
+
+    - name: Set extra public rule for hostagent service
+      set_fact:
+        public_rules: "{{ public_rules }} + ['{{hostagent.spice_port_range}}/tcp']"
+      when: >
+        "iaas_hostagent" in group_names
+
+    - name: Set extra public rule for userapi_proxy service
+      set_fact:
+        public_rules: "{{ public_rules }} + ['{{userapi_proxy.port}}/tcp']"
+      when: >
+        "iaas_openresty" in group_names
+
+    - name: Set extra public rule for turnserver
+      set_fact:
+        public_rules: "{{ public_rules }} + ['3478/tcp'] + ['3478/sctp'] + ['3478/udp']"
+      when: >
+        "turnservers" in group_names
+
+    - name: Set extra public rule for openfires
+      set_fact:
+        public_rules: "{{ public_rules }} + ['5222/tcp'] + ['5701/tcp']"
+      when: >
+        "openfires" in group_names
+
+
+    - name: Set extra public rule for tomcat
+      set_fact:
+        public_rules: "{{ public_rules }} + ['9090/tcp'] + ['8443/tcp'] + ['8080/tcp']"
+      when: >
+        "tomcats" in group_names
+    
+    - name: Set extra public rule for tomcat
+      set_fact:
+        public_rules: "{{ public_rules }} + ['5432/tcp'] "
+      when: >
+        "sunruneps" in group_names
+
+    - name: Set extra public rule for mariadb
+      set_fact:
+        public_rules: "{{ public_rules }} + ['{{ mysql.port }}/tcp']"
+      when: >
+        "mariadb" in group_names
+
+  post_tasks:
+    - name: Clear .old file
+      shell: "rm -f {{ item }}"
+      with_items: 
+        - /etc/firewalld/zones/*.old
+        - /etc/sysconfig/network-scripts/*.old
+  roles:
+  
+    - role: firewall
+  
+    - role: yumrepo
+  
+    - role: hosts

@@ -1,0 +1,17 @@
+---
+
+- name: Install ntpd
+  yum: name=ntp state=latest update_cache=yes
+  notify:
+    - restart ntpd
+
+- name: Generate ntp.conf file
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  notify:
+    - restart ntpd
+
+- name: Start ntpd
+  service:
+    name: ntpd
+    state: started
+    enabled: yes

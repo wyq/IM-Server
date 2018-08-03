@@ -1,0 +1,24 @@
+---
+
+- name: yum install java
+  yum: name=java
+
+- name: yum install libstdc++
+  yum: name=libstdc++ 
+
+#- name: yum install libstdc++ 
+#  shell: yum install -y  libstdc++.x86_64
+#  ignore_errors: yes
+
+#- name: yum install libstdc++.i686
+#  yum: name=libstdc++.i686
+#  ignore_errors: yes
+
+- name: remove old openfire init config
+  yum: name=openfire state=absent
+  when: install_openfire =="yes"
+
+- name: yum install openfire
+  yum: name=openfire
+
+

@@ -1,0 +1,15 @@
+{
+  "service": {
+    "name": "{{ item.key }}",
+    "tags": ["master"],
+    "address": "{{ ansible_ssh_host }}",
+    "port": {{ item.value.port }},
+    "checks": [
+      {
+        "script": "/etc/consul.d/checker/port-monitor.sh {{ item.value.port }}",
+        "interval": "5s",
+        "timeout": "1s"
+      }
+    ]
+  }
+}

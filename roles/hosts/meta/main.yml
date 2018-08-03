@@ -1,0 +1,26 @@
+---
+galaxy_info:
+
+  author: haolin
+
+  description: deploy inventory hosts to /etc/hosts
+
+  company: hao0.me
+
+  license: MIT
+
+  min_ansible_version: 1.9
+
+  platforms:
+  - name: Centos
+
+  galaxy_tags:
+    - hosts
+    - /etc/hosts
+    - system
+
+  categories:
+  - system
+
+dependencies: []
+  

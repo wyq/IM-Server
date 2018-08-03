@@ -1,0 +1,85 @@
+---
+
+- name: Generate DNS recursors
+  set_fact:
+    consul_recursor_dns: "{{ consul_recursor_dns | default([]) }} + ['\"{{ item }}\"']"
+  with_items:
+    - "{{dns_recursors | default([]) }}"
+  tags:
+    - iaas_add
+
+- name: Calculate quorum of consul cluster
+  set_fact:
+    consul_quorum_size: "{{consul_servers | length }}"
+  when: consul_servers | length >= 1
+  tags:
+    - iaas_add
+
+- name: Install consul package
+  yum:
+    name: "{{ item }}" 
+    state: latest 
+    update_cache: yes
+  with_items:
+    - consul-1.0.3
+    - net-tools
+  tags:
+    - iaas_add
+
+- name: Clean /etc/consul.d/ directory
+  file: path=/etc/consul.d/ state=absent
+  when: clean_services is defined and clean_services|bool
+  notify:
+    - restart consul
+
+- name: Prepare /etc/consul.d/checker/ directory
+  file: path=/etc/consul.d/checker/ state=directory mode=0755
+  tags:
+    - iaas_add
+
+- name: Generate consul configuration file
+  template: src=etc/consul.d/config.conf.j2 dest=/etc/consul.d/config.json
+  notify:
+    - restart consul
+  tags:
+    - iaas_add
+
+- name: Generate port checker
+  template: src=etc/consul.d/checker/port-monitor.sh.j2 dest=/etc/consul.d/checker/port-monitor.sh mode=0755
+  notify:
+    - restart consul
+  tags:
+    - iaas_add
+
+- name: Generate consul configuration file
+  template: src=etc/consul.d/service.json.j2 dest=/etc/consul.d/{{ item.key }}.json
+  with_dict: "{{ services }}"
+  notify:
+    - restart consul
+  tags:
+    - iaas_add
+
+- name: Start consul service
+  service:
+    name: consul
+    state: started
+    enabled: yes
+  tags:
+    - iaas_add
+
+- name: Waiting for dns port
+  wait_for: port=53 delay=3
+  tags:
+    - iaas_add
+
+- name: Gathering consul peer nodes
+  set_fact:
+    consul_peers: "{{ consul_peers | default([]) }} + ['{{ item }}']"
+  with_items: "{{ groups['consul'] }}"
+  tags:
+    - iaas_add
+
+- name: Update DNS
+  template: src=etc/resolv.conf.j2 dest=/etc/resolv.conf
+  tags:
+    - iaas_add

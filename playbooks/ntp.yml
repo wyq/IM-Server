@@ -1,0 +1,21 @@
+- name: NTP setup
+  hosts: ntp
+  gather_facts: no
+  pre_tasks:
+  
+    - name: Set NTPD master
+      set_fact: master_ntp_server="{{ item }}"
+      when: >
+        hostvars[item].ntp_master is defined and hostvars[item].ntp_master|bool
+        and config_ntp is defined and config_ntp|bool
+      with_items: "{{ groups['ntp'] }}"
+      tags:
+        - ntp_sync
+
+  roles:
+
+    - role: ntp
+      ntp_enabled: true
+      ntp_timezone: "Asia/Shanghai"
+      ntp_manage_config: true
+      when: config_ntp is defined and (config_ntp|bool)

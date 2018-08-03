@@ -1,0 +1,4 @@
+- include: "playbooks/common.yml"
+- include: "playbooks/ntp.yml"
+- include: "playbooks/mariadb_galera.yml"
+- include: "playbooks/imserver.yml"

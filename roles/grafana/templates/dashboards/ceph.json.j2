@@ -1,0 +1,3068 @@
+{
+  "dashboard":{
+    "annotations": {
+      "list": []
+    },
+    "editable": false,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "hideControls": false,
+    "id": null,
+    "links": [],
+    "refresh": "60s",
+    "rows": [
+      {
+        "collapse": false,
+        "height": 236,
+        "panels": [
+          {
+            "cacheTimeout": null,
+            "colorBackground": false,
+            "colorValue": true,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "format": "none",
+            "gauge": {
+              "maxValue": 100,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": true
+            },
+            "height": null,
+            "id": 11,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+              {
+                "name": "value to text",
+                "value": 1
+              },
+              {
+                "name": "range to text",
+                "value": 2
+              }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "rangemaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "renderer": "",
+            "seriesOverrides": null,
+            "span": 3,
+            "sparkline": {
+              "fillColor": "rgba(31, 118, 189, 0.18)",
+              "full": false,
+              "lineColor": "rgb(31, 120, 193)",
+              "show": false
+            },
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "tableColumn": "",
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "msg"
+                      ],
+                      "type": "field"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "cluster"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "property",
+                    "operator": "=",
+                    "value": "overall_status"
+                  }
+                ]
+              }
+            ],
+            "thresholds": "",
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "健康状态",
+            "transparent": true,
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+              {
+                "op": "=",
+                "text": "N/A",
+                "value": "null"
+              }
+            ],
+            "valueName": "avg",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          },
+          {
+            "cacheTimeout": null,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": [
+              "rgba(207, 235, 206, 0.97)",
+              "rgba(243, 142, 58, 0.89)",
+              "rgba(245, 54, 54, 0.9)"
+            ],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "format": "percentunit",
+            "gauge": {
+              "maxValue": 1,
+              "minValue": 0,
+              "show": true,
+              "thresholdLabels": false,
+              "thresholdMarkers": true
+            },
+            "height": null,
+            "id": 14,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+              {
+                "name": "value to text",
+                "value": 1
+              },
+              {
+                "name": "range to text",
+                "value": 2
+              }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "rangemaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "renderer": "",
+            "seriesOverrides": null,
+            "span": 3,
+            "sparkline": {
+              "fillColor": "rgba(31, 118, 189, 0.18)",
+              "full": false,
+              "lineColor": "rgb(31, 120, 193)",
+              "show": false
+            },
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "tableColumn": "",
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "SELECT \"bytes_used\" FROM \"autogen\".\"ceph\" WHERE \"type\" = 'cluster' AND \"property\" = 'storage_space' AND $timeFilter",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "used_percent"
+                      ],
+                      "type": "field"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "cluster"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "property",
+                    "operator": "=",
+                    "value": "storage_space"
+                  }
+                ]
+              }
+            ],
+            "thresholds": "0.3,0.8",
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "空间使用率",
+            "transparent": true,
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+              {
+                "op": "=",
+                "text": "N/A",
+                "value": "null"
+              }
+            ],
+            "valueName": "current",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          },
+          {
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": null,
+            "columns": [],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "fontSize": "100%",
+            "format": null,
+            "gauge": {
+              "maxValue": 0,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": false
+            },
+            "height": null,
+            "id": 13,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": null,
+            "mappingTypes": null,
+            "maxDataPoints": 0,
+            "nullPointMode": "",
+            "pageSize": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "rangemaps": null,
+            "renderer": "",
+            "scroll": true,
+            "seriesOverrides": null,
+            "showHeader": true,
+            "sort": {
+              "col": 0,
+              "desc": true
+            },
+            "span": 6,
+            "stack": false,
+            "steppedLine": false,
+            "styles": [
+              {
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "pattern": "Time",
+                "type": "date"
+              },
+              {
+                "colors": [
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "decimals": 2,
+                "pattern": "/.*/",
+                "thresholds": [],
+                "type": "number",
+                "unit": "short"
+              }
+            ],
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "SELECT distinct(\"msg\") AS \"Message\" FROM \"autogen\".\"ceph\" WHERE \"type\" = 'cluster' AND \"property\" = 'summary' AND \"time\" > now()-20s AND $timeFilter",
+                "rawQuery": true,
+                "refId": "A",
+                "resultFormat": "table",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "msg"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "distinct"
+                    },
+                    {
+                      "params": [
+                        "Message"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "cluster"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "property",
+                    "operator": "=",
+                    "value": "summary"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "time",
+                    "operator": ">",
+                    "value": "now()-15s"
+                  }
+                ]
+              }
+            ],
+            "thresholds": null,
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "状态总览",
+            "transform": "timeseries_to_columns",
+            "transparent": true,
+            "type": "table",
+            "valueFontSize": "",
+            "valueMaps": null,
+            "valueName": "",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": null,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 1,
+            "format": null,
+            "gauge": {
+              "maxValue": 0,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": false
+            },
+            "height": null,
+            "id": 2,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "mappingType": null,
+            "mappingTypes": null,
+            "maxDataPoints": 0,
+            "nullPointMode": "null",
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "rangemaps": null,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "span": 6,
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "targets": [
+              {
+                "alias": "$col",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "SELECT \"value\" FROM \"autogen\".\"ceph\" WHERE $timeFilter GROUP BY \"rw_rate_type\"",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "read_bytes_sec"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [
+                        "读取"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "write_bytes_sec"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [
+                        "写入"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "cluster"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "property",
+                    "operator": "=",
+                    "value": "io_rate"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeShift": null,
+            "timeshift": null,
+            "title": "集群IO速率",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "transparent": true,
+            "type": "graph",
+            "valueFontSize": "",
+            "valueMaps": null,
+            "valueName": "",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "format": "Bps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ]
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": null,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 1,
+            "format": null,
+            "gauge": {
+              "maxValue": 0,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": false
+            },
+            "height": null,
+            "id": 3,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "mappingType": null,
+            "mappingTypes": null,
+            "maxDataPoints": 0,
+            "nullPointMode": "null",
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "rangemaps": null,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "span": 6,
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "targets": [
+              {
+                "alias": "$col",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "SELECT \"read_op_per_sec\", \"write_op_per_sec\" FROM \"autogen\".\"ceph\" WHERE \"type\" = 'cluster' AND \"property\" = 'io_rate' AND $timeFilter",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "read_op_per_sec"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [
+                        "读取"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "write_op_per_sec"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [
+                        "写入"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "cluster"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "property",
+                    "operator": "=",
+                    "value": "io_rate"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeShift": null,
+            "timeshift": null,
+            "title": "集群IOPS",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "transparent": true,
+            "type": "graph",
+            "valueFontSize": "",
+            "valueMaps": null,
+            "valueName": "",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "format": "ops",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ]
+          },
+          {
+            "cacheTimeout": null,
+            "colorBackground": true,
+            "colorValue": false,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(108, 76, 49, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "format": "decbytes",
+            "gauge": {
+              "maxValue": 100,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": true
+            },
+            "height": null,
+            "id": 15,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+              {
+                "name": "value to text",
+                "value": 1
+              },
+              {
+                "name": "range to text",
+                "value": 2
+              }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "rangemaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "renderer": "",
+            "seriesOverrides": null,
+            "span": 2,
+            "sparkline": {
+              "fillColor": "rgba(31, 118, 189, 0.18)",
+              "full": false,
+              "lineColor": "rgb(31, 120, 193)",
+              "show": false
+            },
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "tableColumn": "",
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "bytes_used"
+                      ],
+                      "type": "field"
+                    }
+                  ]
+                ],
+                "tags": []
+              }
+            ],
+            "thresholds": "",
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "已用空间",
+            "transparent": true,
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+              {
+                "op": "=",
+                "text": "N/A",
+                "value": "null"
+              }
+            ],
+            "valueName": "avg",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          },
+          {
+            "cacheTimeout": null,
+            "colorBackground": true,
+            "colorValue": false,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(54, 88, 138, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "format": "decbytes",
+            "gauge": {
+              "maxValue": 100,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": true
+            },
+            "height": null,
+            "id": 16,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+              {
+                "name": "value to text",
+                "value": 1
+              },
+              {
+                "name": "range to text",
+                "value": 2
+              }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "rangemaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "renderer": "",
+            "seriesOverrides": null,
+            "span": 2,
+            "sparkline": {
+              "fillColor": "rgba(31, 118, 189, 0.18)",
+              "full": false,
+              "lineColor": "rgb(31, 120, 193)",
+              "show": false
+            },
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "tableColumn": "",
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "bytes_avail"
+                      ],
+                      "type": "field"
+                    }
+                  ]
+                ],
+                "tags": []
+              }
+            ],
+            "thresholds": "",
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "可用空间",
+            "transparent": true,
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+              {
+                "op": "=",
+                "text": "N/A",
+                "value": "null"
+              }
+            ],
+            "valueName": "avg",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          },
+          {
+            "cacheTimeout": null,
+            "colorBackground": true,
+            "colorValue": false,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(47, 78, 86, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "format": "decbytes",
+            "gauge": {
+              "maxValue": 100,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": true
+            },
+            "height": null,
+            "id": 17,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+              {
+                "name": "value to text",
+                "value": 1
+              },
+              {
+                "name": "range to text",
+                "value": 2
+              }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "rangemaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "renderer": "",
+            "seriesOverrides": null,
+            "span": 2,
+            "sparkline": {
+              "fillColor": "rgba(31, 118, 189, 0.18)",
+              "full": false,
+              "lineColor": "rgb(31, 120, 193)",
+              "show": false
+            },
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "tableColumn": "",
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "bytes_total"
+                      ],
+                      "type": "field"
+                    }
+                  ]
+                ],
+                "tags": []
+              }
+            ],
+            "thresholds": "",
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "总空间",
+            "transparent": true,
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+              {
+                "op": "=",
+                "text": "N/A",
+                "value": "null"
+              }
+            ],
+            "valueName": "avg",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          },
+          {
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": null,
+            "columns": [],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "fontSize": "100%",
+            "format": null,
+            "gauge": {
+              "maxValue": 0,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": false
+            },
+            "height": null,
+            "id": 25,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": null,
+            "mappingTypes": null,
+            "maxDataPoints": 0,
+            "nullPointMode": "",
+            "pageSize": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "rangemaps": null,
+            "renderer": "",
+            "scroll": true,
+            "seriesOverrides": null,
+            "showHeader": true,
+            "sort": {
+              "col": 0,
+              "desc": true
+            },
+            "span": 6,
+            "stack": false,
+            "steppedLine": false,
+            "styles": [
+              {
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "pattern": "Time",
+                "type": "date"
+              },
+              {
+                "colors": [
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 2,
+                "pattern": "state_name",
+                "thresholds": [],
+                "type": "number",
+                "unit": "short"
+              },
+              {
+                "colors": [
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 0,
+                "pattern": "count",
+                "thresholds": [],
+                "type": "number",
+                "unit": "short"
+              },
+              {
+                "colors": [
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "decimals": 2,
+                "pattern": "/.*/",
+                "thresholds": [],
+                "type": "number",
+                "unit": "short"
+              }
+            ],
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [
+                  {
+                    "params": [
+                      "state_name"
+                    ],
+                    "type": "tag"
+                  }
+                ],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "SELECT distinct(\"value\") AS \"count\" FROM \"autogen\".\"ceph\" WHERE \"type\" = 'pg_state' AND \"time\" > now()-20s AND $timeFilter GROUP BY \"state_name\"",
+                "rawQuery": true,
+                "refId": "A",
+                "resultFormat": "table",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "value"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "distinct"
+                    },
+                    {
+                      "params": [
+                        "count"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "pg_state"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "time",
+                    "operator": ">",
+                    "value": "now()-15s"
+                  }
+                ]
+              }
+            ],
+            "thresholds": null,
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "PG 状态",
+            "transform": "table",
+            "transparent": true,
+            "type": "table",
+            "valueFontSize": "",
+            "valueMaps": null,
+            "valueName": "",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          }
+        ],
+        "repeat": null,
+        "repeatIteration": null,
+        "repeatRowId": null,
+        "showTitle": true,
+        "title": "Cluster",
+        "titleSize": "h6"
+      },
+      {
+        "collapse": false,
+        "height": 226,
+        "panels": [
+          {
+            "cacheTimeout": null,
+            "colorBackground": true,
+            "colorValue": false,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(146, 192, 63, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "format": "none",
+            "gauge": {
+              "maxValue": 100,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": true
+            },
+            "height": null,
+            "id": 18,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+              {
+                "name": "value to text",
+                "value": 1
+              },
+              {
+                "name": "range to text",
+                "value": 2
+              }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "rangemaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "renderer": "",
+            "seriesOverrides": null,
+            "span": 4,
+            "sparkline": {
+              "fillColor": "rgba(31, 118, 189, 0.18)",
+              "full": false,
+              "lineColor": "rgb(31, 120, 193)",
+              "show": false
+            },
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "tableColumn": "",
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "up"
+                      ],
+                      "type": "field"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "mon"
+                  }
+                ]
+              }
+            ],
+            "thresholds": "",
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "运行中",
+            "transparent": true,
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+              {
+                "op": "=",
+                "text": "N/A",
+                "value": "null"
+              }
+            ],
+            "valueName": "current",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          },
+          {
+            "cacheTimeout": null,
+            "colorBackground": true,
+            "colorValue": false,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(64, 132, 210, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "format": "none",
+            "gauge": {
+              "maxValue": 100,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": true
+            },
+            "height": null,
+            "id": 19,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+              {
+                "name": "value to text",
+                "value": 1
+              },
+              {
+                "name": "range to text",
+                "value": 2
+              }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "rangemaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "renderer": "",
+            "seriesOverrides": null,
+            "span": 4,
+            "sparkline": {
+              "fillColor": "rgba(31, 118, 189, 0.18)",
+              "full": false,
+              "lineColor": "rgb(31, 120, 193)",
+              "show": false
+            },
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "tableColumn": "",
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "default",
+                "query": "",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "all"
+                      ],
+                      "type": "field"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "mon"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "property",
+                    "operator": "=",
+                    "value": "quorum_size"
+                  }
+                ]
+              }
+            ],
+            "thresholds": "",
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "总数",
+            "transparent": true,
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+              {
+                "op": "=",
+                "text": "N/A",
+                "value": "null"
+              }
+            ],
+            "valueName": "current",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          },
+          {
+            "cacheTimeout": null,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "format": "percentunit",
+            "gauge": {
+              "maxValue": 1,
+              "minValue": 0,
+              "show": true,
+              "thresholdLabels": false,
+              "thresholdMarkers": true
+            },
+            "height": null,
+            "id": 20,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+              {
+                "name": "value to text",
+                "value": 1
+              },
+              {
+                "name": "range to text",
+                "value": 2
+              }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "rangemaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "renderer": "",
+            "seriesOverrides": null,
+            "span": 4,
+            "sparkline": {
+              "fillColor": "rgba(31, 118, 189, 0.18)",
+              "full": false,
+              "lineColor": "rgb(31, 120, 193)",
+              "show": false
+            },
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "tableColumn": "",
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "percent"
+                      ],
+                      "type": "field"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "mon"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "property",
+                    "operator": "=",
+                    "value": "quorum_size"
+                  }
+                ]
+              }
+            ],
+            "thresholds": "0.5,0.5",
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "工作状态",
+            "transparent": true,
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+              {
+                "op": "=",
+                "text": "N/A",
+                "value": "null"
+              }
+            ],
+            "valueName": "current",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          }
+        ],
+        "repeat": null,
+        "repeatIteration": null,
+        "repeatRowId": null,
+        "showTitle": true,
+        "title": "Mon",
+        "titleSize": "h6"
+      },
+      {
+        "collapse": false,
+        "height": 282,
+        "panels": [
+          {
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": null,
+            "columns": [],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "fontSize": "100%",
+            "format": null,
+            "gauge": {
+              "maxValue": 0,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": false
+            },
+            "height": "310",
+            "id": 26,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": null,
+            "mappingTypes": null,
+            "maxDataPoints": 0,
+            "nullPointMode": "",
+            "pageSize": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "rangemaps": null,
+            "renderer": "",
+            "scroll": true,
+            "seriesOverrides": null,
+            "showHeader": true,
+            "sort": {
+              "col": 2,
+              "desc": false
+            },
+            "span": 12,
+            "stack": false,
+            "steppedLine": false,
+            "styles": [
+              {
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "pattern": "Time",
+                "type": "date",
+                "alias": "时间"
+              },
+              {
+                "colors": [
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 2,
+                "pattern": "总空间",
+                "thresholds": [],
+                "type": "number",
+                "unit": "deckbytes"
+              },
+              {
+                "colors": [
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 2,
+                "pattern": "已用空间",
+                "thresholds": [],
+                "type": "number",
+                "unit": "deckbytes"
+              },
+              {
+                "colors": [
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 2,
+                "pattern": "可用空间",
+                "thresholds": [],
+                "type": "number",
+                "unit": "deckbytes"
+              },
+              {
+                "colorMode": "cell",
+                "colors": [
+                  "rgba(75, 196, 177, 0.9)",
+                  "rgba(77, 156, 74, 0.89)",
+                  "rgba(161, 57, 23, 0.97)"
+                ],
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 2,
+                "pattern": "空间使用率",
+                "thresholds": [
+                  "30",
+                  "80"
+                ],
+                "type": "number",
+                "unit": "percent"
+              },
+              {
+                "colors": [
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 0,
+                "pattern": "PG数量",
+                "thresholds": [],
+                "type": "number",
+                "unit": "short"
+              },
+              {
+                "colors": [
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                "decimals": 2,
+                "pattern": "osd_name",
+                "thresholds": [],
+                "type": "number",
+                "unit": "short",
+                "alias": "OSD"
+              },
+              {
+                "colors": [
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+                ],
+                "decimals": 2,
+                "pattern": "/.*/",
+                "thresholds": [],
+                "type": "number",
+                "unit": "short"
+              }
+            ],
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [
+                  {
+                    "params": [
+                      "osd_name"
+                    ],
+                    "type": "tag"
+                  }
+                ],
+                "hide": false,
+                "measurement": "ceph",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "query": "SELECT \"kb\" AS \"总空间\", \"kb_used\" AS \"已用空间\", \"kb_avail\" AS \"可用空间\", \"utilization\" AS \"空间使用率\", \"pgs\" AS \"PG数量\", last(\"host\") AS \"主机\" FROM \"autogen\".\"ceph\" WHERE \"type\" = 'osd' AND $timeFilter GROUP BY \"osd_name\" LIMIT 1",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "table",
+                "select": [
+                  [
+                    {
+                      "type": "field",
+                      "params": [
+                        "host"
+                      ]
+                    },
+                    {
+                      "type": "last",
+                      "params": []
+                    },
+                    {
+                      "type": "alias",
+                      "params": [
+                        "主机"
+                      ]
+                    }
+                  ],
+                  [
+                    {
+                      "type": "field",
+                      "params": [
+                        "kb"
+                      ]
+                    },
+                    {
+                      "type": "alias",
+                      "params": [
+                        "总空间"
+                      ]
+                    }
+                  ],
+                  [
+                    {
+                      "type": "field",
+                      "params": [
+                        "kb_used"
+                      ]
+                    },
+                    {
+                      "type": "alias",
+                      "params": [
+                        "已用空间"
+                      ]
+                    }
+                  ],
+                  [
+                    {
+                      "type": "field",
+                      "params": [
+                        "kb_avail"
+                      ]
+                    },
+                    {
+                      "type": "alias",
+                      "params": [
+                        "可用空间"
+                      ]
+                    }
+                  ],
+                  [
+                    {
+                      "type": "field",
+                      "params": [
+                        "utilization"
+                      ]
+                    },
+                    {
+                      "type": "alias",
+                      "params": [
+                        "空间使用率"
+                      ]
+                    }
+                  ],
+                  [
+                    {
+                      "type": "field",
+                      "params": [
+                        "pgs"
+                      ]
+                    },
+                    {
+                      "type": "alias",
+                      "params": [
+                        "PG数量"
+                      ]
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "osd"
+                  }
+                ],
+                "limit": "1"
+              }
+            ],
+            "thresholds": null,
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "OSD 概览",
+            "transform": "table",
+            "transparent": true,
+            "type": "table",
+            "valueFontSize": "",
+            "valueMaps": null,
+            "valueName": "",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null,
+            "hideTimeOverride": false
+          },
+          {
+            "aliasColors": {},
+            "cacheTimeout": null,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": null,
+            "combine": {
+              "label": "Others",
+              "threshold": 0
+            },
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "fontSize": "80%",
+            "format": "none",
+            "gauge": {
+              "maxValue": 0,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": false
+            },
+            "height": "310",
+            "id": 6,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": true
+            },
+            "legendType": "Under graph",
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": null,
+            "mappingTypes": null,
+            "maxDataPoints": 3,
+            "nullPointMode": "connected",
+            "percentage": false,
+            "pieType": "pie",
+            "pointradius": 0,
+            "points": false,
+            "rangemaps": null,
+            "renderer": "",
+            "seriesOverrides": null,
+            "span": 8,
+            "stack": false,
+            "steppedLine": false,
+            "strokeWidth": 1,
+            "styles": null,
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [
+                  {
+                    "params": [
+                      "name"
+                    ],
+                    "type": "tag"
+                  }
+                ],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "SELECT \"crush_weight\" FROM \"autogen\".\"ceph\" WHERE \"type\" = 'osd_tree' AND time > now() - 5s GROUP BY \"name\"",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "crush_weight"
+                      ],
+                      "type": "field"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "osd_tree"
+                  }
+                ]
+              }
+            ],
+            "thresholds": null,
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "OSD权重",
+            "transparent": true,
+            "type": "grafana-piechart-panel",
+            "valueFontSize": "",
+            "valueMaps": null,
+            "valueName": "current",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          },
+          {
+            "cacheTimeout": null,
+            "colorBackground": true,
+            "colorValue": false,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(116, 175, 50, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "format": "none",
+            "gauge": {
+              "maxValue": 100,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": true
+            },
+            "height": "150px",
+            "id": 7,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+              {
+                "name": "value to text",
+                "value": 1
+              },
+              {
+                "name": "range to text",
+                "value": 2
+              }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "rangemaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "renderer": "",
+            "seriesOverrides": null,
+            "span": 2,
+            "sparkline": {
+              "fillColor": "rgba(31, 118, 189, 0.18)",
+              "full": false,
+              "lineColor": "rgb(31, 120, 193)",
+              "show": false
+            },
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "tableColumn": "",
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "value"
+                      ],
+                      "type": "field"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "osd"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "osd_state",
+                    "operator": "=",
+                    "value": "up_and_in"
+                  }
+                ]
+              }
+            ],
+            "thresholds": "",
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "Up & In",
+            "transparent": true,
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+              {
+                "op": "=",
+                "text": "N/A",
+                "value": "null"
+              }
+            ],
+            "valueName": "current",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          },
+          {
+            "cacheTimeout": null,
+            "colorBackground": true,
+            "colorValue": false,
+            "colors": [
+              "rgba(240, 78, 9, 0.93)",
+              "rgba(195, 195, 77, 0.92)",
+              "rgba(244, 10, 10, 0.9)"
+            ],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "format": "none",
+            "gauge": {
+              "maxValue": 100,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": true
+            },
+            "height": "150px",
+            "id": 8,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+              {
+                "name": "value to text",
+                "value": 1
+              },
+              {
+                "name": "range to text",
+                "value": 2
+              }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "rangemaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "renderer": "",
+            "seriesOverrides": null,
+            "span": 2,
+            "sparkline": {
+              "fillColor": "rgba(31, 118, 189, 0.18)",
+              "full": false,
+              "lineColor": "rgb(31, 120, 193)",
+              "show": false
+            },
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "tableColumn": "",
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "value"
+                      ],
+                      "type": "field"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "osd"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "osd_state",
+                    "operator": "=",
+                    "value": "up_and_out"
+                  }
+                ]
+              }
+            ],
+            "thresholds": "",
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "Up & Out",
+            "transparent": true,
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+              {
+                "op": "=",
+                "text": "N/A",
+                "value": "null"
+              }
+            ],
+            "valueName": "current",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          },
+          {
+            "cacheTimeout": null,
+            "colorBackground": true,
+            "colorValue": false,
+            "colors": [
+              "rgba(62, 131, 184, 0.9)",
+              "rgb(143, 122, 116)",
+              "rgba(44, 100, 42, 0.97)"
+            ],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "format": "none",
+            "gauge": {
+              "maxValue": 100,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": true
+            },
+            "height": "150",
+            "id": 9,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+              {
+                "name": "value to text",
+                "value": 1
+              },
+              {
+                "name": "range to text",
+                "value": 2
+              }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "rangemaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "renderer": "",
+            "seriesOverrides": null,
+            "span": 2,
+            "sparkline": {
+              "fillColor": "rgba(31, 118, 189, 0.18)",
+              "full": false,
+              "lineColor": "rgb(31, 120, 193)",
+              "show": false
+            },
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "tableColumn": "",
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "SELECT \"value\" FROM \"autogen\".\"ceph\" WHERE \"type\" = 'osd' AND \"osd_state\" = 'up_and_in' AND $timeFilter",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "value"
+                      ],
+                      "type": "field"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "osd"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "osd_state",
+                    "operator": "=",
+                    "value": "down_and_in"
+                  }
+                ]
+              }
+            ],
+            "thresholds": "",
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "Down & In",
+            "transparent": true,
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+              {
+                "op": "=",
+                "text": "N/A",
+                "value": "null"
+              }
+            ],
+            "valueName": "current",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          },
+          {
+            "cacheTimeout": null,
+            "colorBackground": true,
+            "colorValue": false,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(49, 40, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 0,
+            "format": "none",
+            "gauge": {
+              "maxValue": 100,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": true
+            },
+            "height": "150px",
+            "id": 10,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": false,
+            "linewidth": 0,
+            "links": [],
+            "mappingType": 1,
+            "mappingTypes": [
+              {
+                "name": "value to text",
+                "value": 1
+              },
+              {
+                "name": "range to text",
+                "value": 2
+              }
+            ],
+            "maxDataPoints": 100,
+            "nullPointMode": "connected",
+            "nullText": null,
+            "percentage": false,
+            "pointradius": 0,
+            "points": false,
+            "postfix": "",
+            "postfixFontSize": "50%",
+            "prefix": "",
+            "prefixFontSize": "50%",
+            "rangeMaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "rangemaps": [
+              {
+                "from": "null",
+                "text": "N/A",
+                "to": "null"
+              }
+            ],
+            "renderer": "",
+            "seriesOverrides": null,
+            "span": 2,
+            "sparkline": {
+              "fillColor": "rgba(31, 118, 189, 0.18)",
+              "full": false,
+              "lineColor": "rgb(31, 120, 193)",
+              "show": false
+            },
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "tableColumn": "",
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "value"
+                      ],
+                      "type": "field"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "type",
+                    "operator": "=",
+                    "value": "osd"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "osd_state",
+                    "operator": "=",
+                    "value": "down_and_out"
+                  }
+                ]
+              }
+            ],
+            "thresholds": "",
+            "timeFrom": null,
+            "timeshift": null,
+            "title": "Down & Out",
+            "transparent": true,
+            "type": "singlestat",
+            "valueFontSize": "80%",
+            "valueMaps": [
+              {
+                "op": "=",
+                "text": "N/A",
+                "value": "null"
+              }
+            ],
+            "valueName": "current",
+            "xaxis": {
+              "mode": "",
+              "name": null,
+              "show": false,
+              "values": null
+            },
+            "yaxes": null
+          }
+        ],
+        "repeat": null,
+        "repeatIteration": null,
+        "repeatRowId": null,
+        "showTitle": true,
+        "title": "Osd",
+        "titleSize": "h6"
+      },
+      {
+        "collapse": false,
+        "height": 313,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": null,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 2,
+            "format": null,
+            "gauge": {
+              "maxValue": 0,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": false
+            },
+            "height": null,
+            "id": 21,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "mappingType": null,
+            "mappingTypes": null,
+            "maxDataPoints": 0,
+            "nullPointMode": "null",
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "rangemaps": null,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "span": 6,
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "targets": [
+              {
+                "alias": "$col",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "read_bytes_sec"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [
+                        "读取"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "write_bytes_sec"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [
+                        "写入"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "pool_name",
+                    "operator": "=~",
+                    "value": "/^$pool$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeShift": null,
+            "timeshift": null,
+            "title": "存储池 $pool IO速率",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "transparent": true,
+            "type": "graph",
+            "valueFontSize": "",
+            "valueMaps": null,
+            "valueName": "",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "format": "Bps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ]
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": null,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 2,
+            "format": null,
+            "gauge": {
+              "maxValue": 0,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": false
+            },
+            "height": null,
+            "id": 22,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "mappingType": null,
+            "mappingTypes": null,
+            "maxDataPoints": 0,
+            "nullPointMode": "null",
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "rangemaps": null,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "span": 6,
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "targets": [
+              {
+                "alias": "$col",
+                "dsType": "influxdb",
+                "groupBy": [],
+                "hide": false,
+                "measurement": "ceph",
+                "policy": "autogen",
+                "query": "SELECT \"read_op_per_sec\", \"write_op_per_sec\" FROM \"autogen\".\"ceph\" WHERE \"property\" = 'io_rate' AND $timeFilter",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "read_op_per_sec"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [
+                        "读取"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "write_op_per_sec"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [
+                        "写入"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "pool_name",
+                    "operator": "=~",
+                    "value": "/^$pool$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeShift": null,
+            "timeshift": null,
+            "title": "存储池  $pool  IOPS",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "transparent": true,
+            "type": "graph",
+            "valueFontSize": "",
+            "valueMaps": null,
+            "valueName": "",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "format": "ops",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ]
+          }
+        ],
+        "repeat": null,
+        "repeatIteration": null,
+        "repeatRowId": null,
+        "showTitle": true,
+        "title": "Pool",
+        "titleSize": "h6"
+      }
+    ],
+    "schemaVersion": 14,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {},
+          "datasource": "{{ grafana.datasource.name }}",
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "pool",
+          "options": [],
+          "query": "SHOW TAG VALUES FROM \"ceph\" WITH KEY = \"pool_name\"\t",
+          "refresh": 1,
+          "regex": "",
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ]
+    },
+    "timezone": "browser",
+    "title": "{{ item.title }}",
+    "version": 2
+  },
+  "overwrite": true
+}

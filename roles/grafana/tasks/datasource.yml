@@ -1,0 +1,10 @@
+---
+
+- name: Make sure grafana temporary directory exist
+  file: path=/tmp/grafana state=directory
+
+- name: Generate datasource templates
+  template: src=templates/datasource.json.j2 dest=/tmp/grafana/datasource.json
+
+- name: Create datasource 
+  shell: 'curl -H "Content-Type: application/json" --data @/tmp/grafana/datasource.json http://127.0.0.1:{{ grafana.port }}/api/datasources'

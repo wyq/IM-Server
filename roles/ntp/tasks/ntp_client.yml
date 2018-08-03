@@ -1,0 +1,34 @@
+---
+
+- name: Install ntpdate
+  yum: name=ntpdate state=latest update_cache=yes
+
+- name: Ensure NTP is stopped and disabled as configured.
+  service:
+    name: "{{item}}"
+    state: stopped
+    enabled: no
+  with_items:
+    - ntpd
+    - chronyd
+  ignore_errors: yes
+
+- name: Generate slave ntp.conf file
+  template: 
+    src: ntp.cron.hourly.j2 
+    dest: /etc/cron.hourly/ntpdate.cron 
+    mode: '0755'
+  notify:
+    - restart crond
+
+- name: Start crond
+  service:
+    name: crond
+    state: started
+    enabled: yes
+
+- name: Sync Time server now
+  shell: ntpdate "{{ master_ntp_server }}"
+  when: master_ntp_server is defined
+  tags:
+    - ntp_sync

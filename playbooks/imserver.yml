@@ -1,0 +1,56 @@
+- name: install common software
+  hosts: all
+  post_tasks:
+    - name: install net-tools
+      yum: name=net-tools 
+
+    - name: install lrzsz
+      yum: name=lrzsz
+
+###################################################################
+- name: setup openfire
+  hosts: openfires
+
+  roles:
+    - role: sunrun.openfire
+
+####################################################################
+
+- name: begin setup turnserver
+  hosts: turnservers
+
+  vars:
+    turnserver_list: []
+
+  roles:
+    - role: sunrun.turnserver
+
+####################################################################
+
+- name: begin setup tomcat
+  hosts: tomcats
+
+  vars:
+    turnserver_list: []
+
+  roles:
+    - role: sunrun.tomcat
+    - role: sunrun.im
+  post_tasks:
+    - name: start service tomcat
+      service:
+        name: tomcat
+        state: restarted
+        enabled: yes
+
+##########################################################################################################
+- name: install
+  hosts: sunruneps
+  roles:
+    - role: sunrun.ep
+ #########################################################################################################
+
+- name: install sunrungp
+  hosts: postgres
+  roles:
+    - role: sunrun.gp

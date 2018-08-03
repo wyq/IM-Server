@@ -1,0 +1,10 @@
+mysql.driver=com.mysql.jdbc.Driver
+mysql.url=jdbc:mysql://{{ sunrunim.mysql.host}}:{{ sunrunim.mysql.port }}/openfire?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+mysql.username={{ sunrunim.mysql.username }}
+mysql.password={{ sunrunim.mysql.password }}
+#mysql.password=aiguijuan1025
+
+maxActive=100
+maxIdle=20
+maxWait=2000
+show_sql=true

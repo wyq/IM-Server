@@ -1,0 +1,17 @@
+---
+
+- name: yum install tomcat
+  yum: name=tomcat state=latest
+
+- name: copy tomcat https conf
+  copy: src=files/server.xml dest=/usr/share/tomcat/conf/
+
+- name: modify jvm
+  shell: sed -i 's/securerandom.source=file:\/dev\/random/securerandom.source=file:\/dev\/.\/urandom/g' /usr/lib/jvm/jre/lib/security/java.security
+
+- name: start service tomcat
+  service:
+    name: tomcat
+    state: started
+    enabled: yes
+

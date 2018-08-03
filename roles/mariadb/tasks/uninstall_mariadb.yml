@@ -1,0 +1,10 @@
+---
+
+- name: Uninstall MariaDB-server
+  yum: name=MariaDB-server state=removed
+
+- name: Delete original mysql directory
+  file: path=/var/lib/mysql state=absent
+
+- name: Delete original cnf.d directory
+  file: path=/etc/my.cnf.d state=absent

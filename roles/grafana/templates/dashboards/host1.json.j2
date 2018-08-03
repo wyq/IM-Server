@@ -1,0 +1,625 @@
+{
+  "dashboard":{
+    "annotations": {
+      "list": []
+    },
+    "editable": false,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "hideControls": false,
+    "id": null,
+    "links": [],
+    "refresh": "60s",
+    "rows": [
+{% for host in groups["monitor_agent"] %}
+      {
+        "collapse": false,
+        "height": "250px",
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": null,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 1,
+            "format": null,
+            "gauge": {
+              "maxValue": 0,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": false
+            },
+            "height": "",
+            "id": 1,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "mappingType": null,
+            "mappingTypes": null,
+            "maxDataPoints": 0,
+            "nullPointMode": "connected",
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "rangemaps": null,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "span": 6,
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "hide": false,
+                "measurement": "",
+                "policy": "default",
+                "query": "SELECT mean(\"usage_idle\") * -1 + 100 FROM \"autogen\".\"cpu\" WHERE \"cpu\" = 'cpu-total' AND  \"host\"='{{ host }}' AND  $timeFilter GROUP BY time($interval), \"cpu\" fill(null)",
+                "rawQuery": true,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": null,
+                "tags": []
+              }
+            ],
+            "thresholds": null,
+            "timeFrom": null,
+            "timeShift": null,
+            "timeshift": null,
+            "title": "CPU使用率",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "transparent": false,
+            "type": "graph",
+            "valueFontSize": "",
+            "valueMaps": null,
+            "valueName": "",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "format": "percent",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ]
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": null,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 1,
+            "format": null,
+            "gauge": {
+              "maxValue": 0,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": false
+            },
+            "height": "",
+            "id": 4,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "show": true,
+              "total": false,
+              "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "mappingType": null,
+            "mappingTypes": null,
+            "maxDataPoints": 0,
+            "nullPointMode": "connected",
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "rangemaps": null,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "span": 6,
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "targets": [
+{% for interface in interfaces %}  
+              {
+                "alias": "接收速率/$tag_interface",
+                "dsType": "influxdb",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "interface"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "hide": false,
+                "measurement": "net",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT non_negative_derivative(mean(\"bytes_recv\"), 10s) FROM \"net\" WHERE \"host\" = '{{ host }}' AND \"interface\" = '{{ interface }}' AND $timeFilter GROUP BY time($interval), \"interface\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "bytes_recv"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "mean"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "host",
+                    "operator": "=",
+                    "value": "{{ host }}"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "interface",
+                    "operator": "=",
+                    "value": "{{ interface }}"
+                  }
+                ]
+              },
+              {
+                "alias": "发送速率/$tag_interface",
+                "dsType": "influxdb",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "interface"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "hide": false,
+                "measurement": "net",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT non_negative_derivative(mean(\"bytes_recv\"), 10s) FROM \"net\" WHERE \"host\" = '{{ host }}' AND \"interface\" = '{{ interface }}' AND $timeFilter GROUP BY time($interval), \"interface\" fill(null)",
+                "rawQuery": false,
+                "refId": "B",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "bytes_sent"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "mean"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "host",
+                    "operator": "=",
+                    "value": "{{ host }}"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "interface",
+                    "operator": "=",
+                    "value": "{{ interface }}"
+                  }
+                ]
+              }{% if loop.last==False %},{% endif %}
+{% endfor %} 
+            ],
+            "thresholds": null,
+            "timeFrom": null,
+            "timeShift": null,
+            "timeshift": null,
+            "title": "网络流量",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "transparent": false,
+            "type": "graph",
+            "valueFontSize": "",
+            "valueMaps": null,
+            "valueName": "",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "format": "Bps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ]
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": null,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 1,
+            "format": null,
+            "gauge": {
+              "maxValue": 0,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": false
+            },
+            "height": "",
+            "id": 2,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "mappingType": null,
+            "mappingTypes": null,
+            "maxDataPoints": 0,
+            "nullPointMode": "connected",
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "rangemaps": null,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "span": 6,
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "hide": false,
+                "measurement": "",
+                "policy": "default",
+                "query": "SELECT mean(\"used_percent\") FROM \"autogen\".\"mem\" WHERE \"host\" = '{{ host }}' AND $timeFilter GROUP BY time($interval) fill(null)",
+                "rawQuery": true,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": null,
+                "tags": []
+              }
+            ],
+            "thresholds": null,
+            "timeFrom": null,
+            "timeShift": null,
+            "timeshift": null,
+            "title": "内存使用率",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "transparent": false,
+            "type": "graph",
+            "valueFontSize": "",
+            "valueMaps": null,
+            "valueName": "",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "format": "percent",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ]
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "colorBackground": false,
+            "colorValue": false,
+            "colors": null,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "{{ grafana.datasource.name }}",
+            "fill": 1,
+            "format": null,
+            "gauge": {
+              "maxValue": 0,
+              "minValue": 0,
+              "show": false,
+              "thresholdLabels": false,
+              "thresholdMarkers": false
+            },
+            "height": "",
+            "id": 3,
+            "interval": "",
+            "legend": {
+              "avg": false,
+              "current": false,
+              "max": false,
+              "min": false,
+              "show": false,
+              "total": false,
+              "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "mappingType": null,
+            "mappingTypes": null,
+            "maxDataPoints": 0,
+            "nullPointMode": "connected",
+            "percentage": false,
+            "pointradius": 5,
+            "points": false,
+            "rangemaps": null,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "span": 6,
+            "stack": false,
+            "steppedLine": false,
+            "styles": null,
+            "targets": [
+              {
+                "alias": "",
+                "dsType": "influxdb",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "hide": false,
+                "measurement": "",
+                "policy": "default",
+                "query": "SELECT mean(\"used_percent\") FROM \"autogen\".\"disk\" WHERE \"host\" = '{{ host }}' AND $timeFilter GROUP BY time($interval) fill(null)",
+                "rawQuery": true,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": null,
+                "tags": []
+              }
+            ],
+            "thresholds": null,
+            "timeFrom": null,
+            "timeShift": null,
+            "timeshift": null,
+            "title": "磁盘使用量",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "transparent": false,
+            "type": "graph",
+            "valueFontSize": "",
+            "valueMaps": null,
+            "valueName": "",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "format": "percent",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ]
+          }
+        ],
+        "repeat": null,
+        "repeatIteration": null,
+        "repeatRowId": null,
+        "showTitle": true,
+        "title": "{{ host }}",
+        "titleSize": "h6"
+      }{% if loop.last==False %},{% endif %}
+{% endfor %} 
+    ],
+    "schemaVersion": 14,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": null,
+      "time_options": null
+    },
+    "timezone": "browser",
+    "title": "{{ item.title }}",
+    "version": 4
+  },
+  "overwrite": true
+}

@@ -1,0 +1,27 @@
+---
+
+- name: Verify YUM repos
+  uri: url={{ item.value }}
+  with_dict: "{{ yumrepo_repos }}"
+
+- name: Clean existed repos
+  shell: rm -f /etc/yum.repos.d/*.repo
+  args:
+    warn: no
+
+- name: Configure additional repos in /etc/yum.repos.d/
+  yum_repository:
+    name: "{{ item.key }}"
+    description: "{{ item.key }} YUM repo"
+    file: "{{ item.key }}"
+    baseurl: "{{ item.value }}"
+    gpgcheck: no
+  with_dict: "{{ yumrepo_repos }}"
+  when: yumrepo_repos.keys() | length > 0
+
+- name: Clean yum cache
+  shell: "yum clean all"
+  args:
+    warn: no
+
+

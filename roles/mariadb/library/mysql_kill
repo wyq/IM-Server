@@ -1,0 +1,55 @@
+#!/usr/bin/python
+
+import commands
+import re
+from os import popen
+import time
+
+
+def yield_mysqld():
+    all_processes = popen('ps ax').readlines()
+    mysqld_re = re.compile(r'mysqld')
+    for p in all_processes:
+        proc_info = p.strip()
+        if mysqld_re.search(proc_info):
+            yield proc_info.split()[0]
+
+
+def mysql_kill(module):
+    try:
+        for mysqld_pid in yield_mysqld():
+            commands.getstatusoutput('kill -9 %s' % mysqld_pid)
+
+        time.sleep(2)
+
+        for mysqld_pid in yield_mysqld():
+            return 1, 'mysqld is running'
+        return 0, None
+    except Exception as e:
+        return 1, str(e)
+
+
+def main():
+    module = AnsibleModule(
+        argument_spec=dict(
+        ),
+        supports_check_mode=True
+    )
+
+    # In check mode, we take no action
+    # Since this module never changes system state, we just
+    # return changed=False
+    if module.check_mode:
+        module.exit_json(changed=False)
+
+    (rc, msg) = mysql_kill(module)
+    if rc == 0:
+        msg = msg or ""
+        module.exit_json(changed=False, stdout=msg, stderr="", rc=rc)
+    else:
+        module.fail_json(msg=msg, stdout='', stderr=msg, rc=rc)
+
+
+from ansible.module_utils.basic import *
+
+main()

@@ -1,0 +1,16 @@
+### 非常用修改项 ###
+
+# Mariadb 数据库配置
+mysql:
+  port: 13306
+  root_password: sunrun
+  cluster_name: db_cluster
+  users:
+    - username: admin
+      password: Secur1tyP@ssWD182
+      privileges: 
+        - openfire.*:ALL
+  databases:
+    - name: openfire
+      encoding: utf8
+      collation: utf8_bin

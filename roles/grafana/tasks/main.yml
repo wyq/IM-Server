@@ -1,0 +1,37 @@
+---
+
+- name: Install grafana
+  yum: name=grafana-4.4.2 state=installed update_cache=yes
+
+- name: Check whether exist of config directory
+  file: 
+    path: "{{ item }}" 
+    state: directory
+  with_items:
+    - "/etc/grafana"
+    - "/var/lib/grafana/plugins"
+
+- name: Copy grafana config file
+  template: src=templates/grafana.ini.j2 dest=/etc/grafana/grafana.ini
+
+- name: Install unzip
+  yum: name=unzip state=latest update_cache=yes
+
+- name: Copy grafana plugins
+  unarchive: 
+    src: files/grafana-piechart-panel-11b21df.zip 
+    dest: /var/lib/grafana/plugins
+
+- include: bootstrap.yml
+  run_once: yes
+
+- name: Restart grafana
+  service: name=grafana-server state=restarted enabled=true
+
+- include: datasource.yml
+  run_once: yes
+
+- include: dashboard.yml
+  run_once: yes
+  tags:
+    - iaas_add

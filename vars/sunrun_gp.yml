@@ -1,0 +1,8 @@
+### 常用修改项 ###
+
+greenplum:
+  postgres_db_dbport: 5432
+  postgres_db_username: admin
+  postgres_db_userpassword: Secur1tyP@ssWD182
+  postgres_db_dbname: sunrunep
+

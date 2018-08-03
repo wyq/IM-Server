@@ -1,0 +1,10 @@
+---
+# defaults file for ansible-mariadb-galera
+
+db_users: []
+db_list: []
+db_servers: []
+mysql:
+  cluster_name: mycluster
+
+cluster_is_ok: no

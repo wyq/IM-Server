@@ -1,0 +1,19 @@
+---
+
+- name: Set the correct timezone.
+  file:
+    src: "/usr/share/zoneinfo/{{ ntp_timezone }}"
+    dest: /etc/localtime
+    state: link
+    force: yes
+
+- include: ntp_master.yml
+  when: ntp_master is defined and (ntp_master|bool)
+
+- include: ntp_client.yml
+  when: ntp_master is not defined
+
+- name: Sync system time to hardware
+  shell: "hwclock --systohc"
+  tags:
+    - ntp_sync

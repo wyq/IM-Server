@@ -1,0 +1,7 @@
+---
+
+- name: Bootstrap grafana
+  service: name=grafana-server state=restarted enabled=true
+
+- name: Wait for grafana running
+  wait_for: port={{grafana.port}} delay=3

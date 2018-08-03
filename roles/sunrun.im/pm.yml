@@ -1,0 +1,41 @@
+---
+
+##########################################################################################################
+
+##########################################################################################################
+
+- name: begin setup tomcat
+  hosts: tomcats
+  
+  vars:
+    turnserver_list: []
+
+  roles:
+    - role: sunrun.tomcat
+
+  post_tasks:
+
+    - name: copy skapi.war
+      copy: src=files/skapi.war dest=/usr/share/tomcat/webapps/
+
+    - name: copy tomcat https conf
+      copy: src=files/server.xml dest=/usr/share/tomcat/conf/
+
+    - name: modify jvm
+      shell: sed -i 's/securerandom.source=file:\/dev\/random/securerandom.source=file:\/dev\/.\/urandom/g' /usr/lib/jvm/jre/lib/security/java.security
+
+    - name: start service tomcat
+      service:
+        name: tomcat
+        state: started
+        enabled: yes
+
+
+##########################################################################################################
+
+
+
+
+
+
+

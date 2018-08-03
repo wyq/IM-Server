@@ -1,0 +1,15 @@
+---
+
+- name: install 
+  shell: yum -y install httpd php-5.4.16 php-pgsql-5.4.16 php-mysql-5.4.16  php-gd-5.4.16 php-mbstring-5.4.16 php-mcrypt-5.4.16  sunrunep
+
+
+- name:  config web 
+  shell: sed -i "s/short_open_tag = Off/short_open_tag = On/g"  /etc/php.ini ; echo '*/1 * * * *   root /usr/bin/curl -i http://localhost/sunrunep/index.php/Bin/runOnce'>>/etc/crontab;systemctl enable crond;systemctl restart crond;systemctl enable httpd;systemctl disable firewalld;systemctl stop firewalld;systemctl restart httpd
+
+
+- name: config db connection
+  template: src=templates/config.inc.php.j2 dest=/var/www/html/sunrunep/config.inc.php
+ 
+- name: chown
+  shell: ln -s /var/www/html/sunrunep/ /var/www/sunrunep;chown -R apache:apache /var/www/;chmod -R 755 /var/www/

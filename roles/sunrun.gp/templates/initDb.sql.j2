@@ -1,0 +1,7 @@
+CREATE DATABASE {{ greenplum.postgres_db_dbname }}  ;
+
+CREATE ROLE admin CREATEROLE CREATEDB;
+GRANT ALL ON DATABASE {{ greenplum.postgres_db_dbname }} TO admin;
+ALTER ROLE admin WITH PASSWORD '{{ greenplum.postgres_db_userpassword }}'; 
+ALTER ROLE admin LOGIN;
+

@@ -1,0 +1,13 @@
+---
+
+- name: setup firewall
+  hosts: all
+
+  tasks:
+    - debug: var=inventory_hostname
+    - debug: var=hostvars[inventory_hostname].ansible_ssh_host
+    - debug: var=groups
+    - debug: var=group_names
+
+    - name: config tomcat
+      template: src=templates/test.j2 dest=/root/test/{{ inventory_hostname }}.jsTocfg

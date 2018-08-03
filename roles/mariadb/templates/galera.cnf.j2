@@ -1,0 +1,17 @@
+[galera]
+wsrep_on=ON
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+binlog_format=ROW
+
+innodb_autoinc_lock_mode=2
+default_storage_engine=InnoDB
+
+#配置集群中所有节点，如果有多个，以逗号间隔
+wsrep_cluster_address=gcomm://{{ db_servers | join(",") }}
+
+#本节点信息，在不同主机上需要修改
+wsrep_node_address='{{ inventory_hostname }}'
+wsrep_node_name='{{ inventory_hostname }}'
+
+#配置集群名称，相同集群内的所有主机必须设置相同的集群名称
+wsrep_cluster_name='{{ cluster_name }}'

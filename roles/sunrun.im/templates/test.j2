@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone target="ACCEPT">
+  <short>Trusted</short>
+  <description>All network connections are accepted.</description>
+  {% for item in groups['all'] %}
+  <source address="{{ hostvars[item].ansible_ssh_host }}"/>
+  {% endfor %}
+</zone>
+
+<?xml version="1.0" encoding="utf-8"?>
+<zone>
+  <short>Public</short>
+  <description>For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.</description>
+  <service name="ssh"/>
+{% if 'HAProxys' in group_names %}
+  <port protocol="tcp" port="5222"/>
+{% endif %}
+{% if 'mysqls' in group_names %}
+  <port protocol="tcp" port="3306"/>
+{% endif %}
+{% if 'tomcats' in group_names %}
+  <port protocol="tcp" port="8080"/>
+  <port protocol="tcp" port="8443"/>
+  <port protocol="tcp" port="8443"/>
+{% endif %}
+{% if 'turnservers' in group_names %}
+  <port protocol="tcp" port="3478"/>
+  <port protocol="udp" port="3478"/>
+{% endif %}
+{% if 'openfires' in group_names %}
+  <port protocol="tcp" port="9090"/>
+  <port protocol="tcp" port="9091"/>
+  <port protocol="tcp" port="5222"/>
+  <port protocol="tcp" port="5701"/>
+{% endif %}
+</zone>

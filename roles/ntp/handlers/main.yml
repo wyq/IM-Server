@@ -1,0 +1,10 @@
+---
+- name: restart ntpd
+  service:
+    name: ntpd
+    state: restarted
+
+- name: restart crond
+  service:
+    name: crond
+    state: restarted

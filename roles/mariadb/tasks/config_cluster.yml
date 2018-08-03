@@ -1,0 +1,13 @@
+---
+
+- name: get cluster status
+  shell: mysql -u root -e "SHOW GLOBAL STATUS WHERE Variable_name IN ('wsrep_ready', 'wsrep_cluster_size', 'wsrep_cluster_status', 'wsrep_connected');"
+  register: cluster_status
+  changed_when: false
+  when: cluster_is_ok
+
+
+- name: show cluster status
+  debug: msg="{{ cluster_status.stdout_lines }}"
+  changed_when: false
+  when: cluster_is_ok

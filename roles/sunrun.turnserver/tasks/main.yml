@@ -1,0 +1,30 @@
+---
+
+- name: yum install openssl
+  yum: name=openssl
+
+- name: yum install telnet
+  yum: name=telnet
+
+
+- name: yum install sqlite
+  yum: name=sqlite
+
+- name: yum install turnserver
+  yum: name=turnserver state=latest
+
+
+- name: yum install turnserver-client-libs
+  yum: name=turnserver-client-libs
+
+- name: yum install turnserver-utils
+  yum: name=turnserver-utils
+
+- name: copy turnserver.conf.default
+  template: src=files/turnserver.conf.default dest=/etc/turnserver/turnserver.conf owner=root group=root mode=0744 
+
+- name: start service turnserver
+  service:
+    name: turnserver
+    state: started
+    enabled: yes

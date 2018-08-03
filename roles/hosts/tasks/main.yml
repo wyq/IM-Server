@@ -1,0 +1,15 @@
+---
+# tasks file for ansible-role-hosts-deploy
+
+- name: reset hosts
+  template: src=etc/hosts dest=/etc/hosts owner=root group=root mode=0644
+  when: hosts_reset is defined and hosts_reset|bool
+
+- name: deploy hosts
+  lineinfile: dest=/etc/hosts regexp='.*{{ item }}$' line="{{ hostvars[item].ansible_ssh_host }} {{item}}" state=present
+  when: hostvars[item].ansible_ssh_host is defined
+  with_items: "{{ groups[GROUP_NAME] }}"
+
+- name: deloy extra hosts
+  lineinfile: dest=/etc/hosts regexp='.*{{ item.name }}$' line="{{ item.ip }} {{ item.name }}" state=present
+  with_items: "{{ extra_hosts }}"

@@ -1,0 +1,112 @@
+#SKAPI服务器地址配置--按需要配置
+#https访问的ip和端口(默认为8443，如果端口有映射则按需更改)
+service.https.hostIp={{ sunrunim.openfire.host }}:8443
+
+#http访问的ip和端口(默认为8080，如果端口有映射则按需更改)
+service.hostIp={{ sunrunim.openfire.host }}:8080
+
+#uc服务器的地址(默认为https访问)
+service.uc.hostip=
+#service.uc.hostip=http://218.107.10.85:10086
+#iam服务器
+iam.server={{ sunrunim.iam.iam_server }}
+iam.access.key={{ sunrunim.iam.iam_access_key }}
+iam.access.secret={{ sunrunim.iam.iam_access_secret }}
+
+#openfire服务配置
+#openfire服务器的名称，无需修改
+service.xmpp.servicename=sunrunvas
+service.xmpp.login.user=admin
+service.xmpp.login.password=sunrunvas
+
+#openfire服务配置
+#openfire服务p地址
+client.xmpp.server={{ sunrunim.openfire.host }}
+
+#openfire服务对应的端口(默认为5222,如果端口有映射则按需更改)
+client.xmpp.port=5222
+
+#默认无需修改
+client.xmpp.resourcesname=bigchat
+
+#视频媒体服务配置 
+client.turn.sturnurl={{ sunrunim.turnservers.host }}
+client.turn.turnurl={{ sunrunim.turnservers.host }}
+client.turn.username={{ sunrunim.turnservers.turn_username }}
+client.turn.password={{ sunrunim.turnservers.turn_password }}
+
+#文件存储服务配置(connect_type_s3为s3存储，connect_type_aliyun为阿里云OSS存储，根据配置的类型，配置相应的存储配置参数)
+client.file.connecttype=connect_type_s3
+#client.file.connecttype=connect_type_aliyun
+
+#s3存储配置参数
+s3.accessKey={{ sunrunim.s3.s3_accessKey }}
+s3.screctKey={{ sunrunim.s3.s3_screctKey }}
+
+#s3存储配置参数
+s3.ossBucketName={{ sunrunim.s3.s3_ossBucketName }}
+s3.ossHostId={{ sunrunim.s3.s3_ossHostId }}
+s3.ossHostIp={{ sunrunim.s3.s3_ossHostIp }}
+s3.favorite=
+s3.ossPath=
+s3.ossNetIp={{ sunrunim.s3.s3_ossNetIp }}
+
+#阿里云OSS存储配置参数
+oss.accessKey=
+oss.screctKey=
+#oss ram role
+oss.roleArn=
+oss.roleSessionName=
+oss.durationSeconds=
+oss.ossBucketName=
+oss.ossPath=
+oss.ossHostId=
+oss.favorite=
+
+#短信验证配置-企业版无效配置，参数为空即可
+sms.username=
+sms.password=
+
+##邮箱验证配置-企业版无效配置，参数为空即可
+email.smtp=
+email.pop3=
+email.user=
+email.password=
+
+#版本号配置-无需修改
+im.version=1.0.0.0
+
+#导出系统数据库配置参数
+#导出系统开启标识
+postgre.db.enable={{ sunrunim.postgres.postgres_db_enable }}
+postgre.db.username={{ sunrunim.postgres.postgres_db_username }}
+postgre.db.userpassword={{ sunrunim.postgres.postgres_db_userpassword }}
+postgre.db.host={{ sunrunim.postgres.postgres_db_host }}
+postgre.db.dbname={{ sunrunim.postgres.postgres_db_dbname }}
+postgre.db.dbport={{ sunrunim.postgres.postgres_db_dbport }}
+
+
+#小米离线推送配置参数--默认无需修改
+xiaomi.packagename=com.sunrun.bigchat
+xiaomi.app_secret_key=fK2q6WxApj4BIO2gf9a0VQ==
+
+#GCM离线推送配置参数--默认无需修改
+gcm.server_key=AIzaSyB_DP4yrJ2KsC81KEN-JN4EMX12zeyXp3Y
+
+#华为离线推送配置参数--默认无需修改
+huawei.appid=10493014
+huawei.appkey=4i1qj20linpmzb9td8vuixrjrlpimd7l
+
+#个推离线推送配置参数--默认无需修改
+getui.appid=H3uyfVuNgO90Tds6lfDlG3
+getui.appKey=ZKNb8UZQGj9xkNjuCw4ZQ8
+getui.appmasterSecret=rW4NrwOCs28E88WvxmGP42
+
+# 分布式发布订阅消息系统
+
+project.name={{ sunrunim.kafka.project_name }}
+kafka.open={{ sunrunim.kafka.kafka_open }}
+kafka.server={{ sunrunim.kafka.kafka_server }}
+kafka.producer.topic={{ sunrunim.kafka.kafka_producer_topic }}
+kafka.consumer.topic={{ sunrunim.kafka.kafka_consumer_topic }}
+

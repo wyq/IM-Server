@@ -1,0 +1,10 @@
+---
+
+- name: install 
+  yum: name=sunrungp
+
+- name: config sunrungp initdb.sql
+  template: src=templates/initDb.sql.j2 dest=/opt/sunrungp/conf/initDb.sql
+
+- name: config sunrungp initset
+  template: src=templates/install.sh.j2 dest=/opt/sunrungp/install.sh

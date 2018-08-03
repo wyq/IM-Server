@@ -1,0 +1,32 @@
+- name: Mariadb-Galera setup
+  hosts: mariadb
+  gather_facts: no
+  vars:
+    db_server_list: []
+
+  pre_tasks:
+    
+    - name: Include variable file
+      include_vars: "{{item}}"
+      with_items:
+        - "../vars/mariadb.yml"
+      tags:
+        - mysql_db_add
+        - mysql_user_add
+
+    - name: Generate database server list
+      set_fact: db_server_list="{{ db_server_list }} + ['{{ item }}']"
+      with_items: "{{ groups['mariadb'] }}"
+
+    - name: Check if Database server is configured
+      fail: msg="数据库服务器未配置"
+      when: db_server_list | length | int < 1
+
+  roles:
+    - role: mariadb
+      db_databases: "{{ mysql.databases }}"
+      db_users: "{{ mysql.users }}" 
+      db_port: "{{ mysql.port }}"
+      db_servers: "{{ db_server_list }}"
+      root_password: "{{ mysql.root_password }}"
+      cluster_name: "{{ mysql.cluster_name }}"

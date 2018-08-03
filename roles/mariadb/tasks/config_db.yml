@@ -1,0 +1,35 @@
+---
+
+- name: Add .my.cnf
+  template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0600
+  when: >
+    (generate_db is defined and generate_db|bool) 
+    or (generate_user is defined and generate_user|bool)
+
+- name: Create databases
+  mysql_db: name={{ item.name }} encoding={{ item.encoding }} collation={{ item.collation }} state=present
+  with_items: "{{ db_databases }}"
+  when: >
+    generate_db is defined and generate_db|bool
+
+- name: Add database users
+  mysql_user: name={{ item[0].username }} password={{ item[0].password }} host=% append_privs=yes priv={{ item[1] }} state=present
+  with_subelements: 
+    - "{{ db_users }}"
+    - privileges
+  when: >
+    generate_user is defined and generate_user|bool
+
+- name: Reload privilege tables
+  shell: 'mysql -ne "{{ item }}"'
+  with_items:
+    - FLUSH PRIVILEGES
+  changed_when: False
+  when: >
+    generate_user is defined and generate_user|bool
+
+- name: Remove .my.cnf
+  file: path=/root/.my.cnf state=absent
+  when: >
+    (generate_db is defined and generate_db|bool) 
+    or (generate_user is defined and generate_user|bool)

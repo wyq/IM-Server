@@ -1,0 +1,22 @@
+---
+- name: Ensure firewalld is installed (CentOS 7).
+  yum: name=firewalld state=installed
+
+
+- name: Ensure service firewalld start and auto start while onboot.
+  service: name=firewalld state=started enabled=yes
+
+- name: Add public port in firewalld.
+  shell: "firewall-cmd --zone=public --add-port={{item}} --permanent"
+  with_items: "{{ public_rules }}"
+  when: public_rules|length > 0
+  notify: Reload firewall
+
+- name: Add extra trusted source in firewalld.
+  shell: "firewall-cmd --zone=trusted --add-source={{item}} --permanent"
+  with_items: "{{trust_hosts}}"
+  when: trust_hosts|length > 0
+  notify: Reload firewall
+
+- name: Sleep for 10 seconds until firewalld is ready
+  local_action: wait_for port=22 host="{{ ansible_ssh_host }}" delay=1 timeout=10

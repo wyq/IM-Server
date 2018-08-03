@@ -1,0 +1,19 @@
+
+####################################################################
+
+- name: begin setup hac
+  hosts: has
+
+  roles:
+    - role: sunrun.ha
+  post_tasks:
+
+    - name: enable ha
+      shell: systemctl enable srhac
+
+    - name: start ha
+      service:
+        name: srhac
+        state: restarted
+        enabled: yes
+

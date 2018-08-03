@@ -1,0 +1,28 @@
+{
+    "advertise_addr": "{{ ansible_ssh_host }}",
+    "bind_addr": "{{ ansible_ssh_host }}",
+    "log_level": "{{ log_level }}",
+    "client_addr": "0.0.0.0",
+{% if consul_server is defined and consul_server %}
+    "bootstrap_expect": {{ consul_quorum_size }},
+    "server": true,
+{% else %}
+    "server": false,
+{% endif %}
+    "node_name": "{{ inventory_hostname }}",
+    "datacenter": "{{ data_center }}",
+    "domain": "{{ domain }}",
+{% if consul_recursor_dns is defined %}
+    "recursors": [{{ consul_recursor_dns | join(",") }}],
+{% endif %}
+    "data_dir": "/var/consul",
+    "ui": true,
+    "rejoin_after_leave": true,
+    "enable_script_checks": true,
+    "retry_join": [{{ consul_servers | join(",") }}],
+    "ports": {
+        "dns": 53
+    },
+    "retry_interval": "10s",
+    "retry_max": 100
+}

@@ -1,0 +1,47 @@
+### 常用修改项 ###
+### 集群部署时，各项中的host使用集群的服务地址。
+#
+sunrunim:
+  mysql:
+    host: 10.21.21.151
+    port: 13306
+    username: admin
+    password: Secur1tyP@ssWD182
+
+  turnservers:
+    host: 10.21.21.151:3478
+    turn_username: sunrun
+    turn_password: Secur1tyP@ssWD182
+
+  openfire:
+    host: 10.21.21.151  
+    openfire_domain: sunrunvas
+    db_name: openfire
+
+  s3:
+    s3_accessKey: GKI4XZE9MOUO1FFFL2YQ
+    s3_screctKey: p57mZbR8NZQ9nKBsUbviMrmBEpzTlPNxMWJgNg10
+    s3_ossBucketName: sunrunim
+    s3_ossHostId: 192.168.1.230:80
+    s3_ossHostIp: 192.168.1.230:80
+    s3_ossNetIp: 218.107.10.85:80
+
+  postgres:
+    postgres_db_enable: false
+    postgres_db_username: admin
+    postgres_db_userpassword: Secur1tyP@ssWD182
+    postgres_db_host: 10.21.21.218
+    postgres_db_dbname: sunrunep
+    postgres_db_dbport: 5432
+
+  iam:
+    iam_server: 192.168.0.71:9531
+    iam_access_key: 1nIUv9VXtuiL9qI32NLTpNuBiZCiY51
+    iam_access_secret: 1T9Tmu6mlW577Bik3jdKvKeeK6coz3
+
+  kafka:
+    project_name: standard
+    kafka_open: false
+    kafka_server: 
+    kafka_producer_topic: 
+    kafka_consumer_topic: 
