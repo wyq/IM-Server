@@ -1,6 +1,6 @@
 [servers]
 host1 ansible_ssh_host=10.21.21.151 ansible_user=root ansible_ssh_pass=sunrunvas
-#host2 ansible_ssh_host=10.21.21.213 ansible_user=root ansible_ssh_pass=sunrunvas
+#host2 ansible_ssh_host=10.21.21.213 ansible_user=root123 ansible_ssh_pass=sunrunvas
 
 [ntp]
 # ntp_master=yes (yes|no) 是否做为时间同步服务器，有且只有一个
